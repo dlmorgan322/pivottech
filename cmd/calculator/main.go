@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/dlmorgan322/pivot/calculator/calculator"
+	"github.com/dlmorgan322/pivottech/calculator"
 )
 
 var x, y int

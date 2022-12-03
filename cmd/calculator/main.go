@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/dlmorgan322/pivotech/calculator"
+	"github.com/dlmorgan322/pivottech/calculator"
 )
 
 //test

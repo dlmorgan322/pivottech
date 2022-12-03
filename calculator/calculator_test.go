@@ -3,7 +3,7 @@ package calculator_test
 import (
 	"testing"
 
-	"github.com/dlmorgan322/pivottech.git/calculator"
+	"github.com/dlmorgan322/pivottech/calculator"
 )
 
 //test

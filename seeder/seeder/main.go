@@ -16,9 +16,9 @@ type Inventory struct {
 
 const file string = "products.db"
 
-// type Products struct {
-// 	Products []Product
-// }
+type Products struct {
+	Products []Product
+}
 
 type Product struct {
 	ID          int    `json:"id"`
@@ -51,15 +51,15 @@ func NewProducts() (*Inventory, error) {
 
 }
 
-// func (p *Product) Unmarshal(data []byte) error {
-// 	var product Product
-// 	if err := json.Unmarshal(data, &p); err != nil {
-// 		return err
-// 	}
-// 	*p = Product(product)
-// 	return nil
+func (p *Product) Unmarshal(data []byte) error {
+	var product Product
+	if err := json.Unmarshal(data, &p); err != nil {
+		return err
+	}
+	*p = Product(product)
+	return nil
 
-// }
+}
 
 func main() {
 	err := os.Remove(file)
@@ -85,24 +85,17 @@ func main() {
 
 	defer data.Close()
 
-	// decoder := json.NewDecoder(data)
+	decoder := json.NewDecoder(data)
 
 	var product Product
 	json.Unmarshal(byteResult, &product)
-	// for {
-	// 	var product Product
-	// 	err = decoder.Decode(&product)
-	// 	if err != nil {
-	// 		fmt.Print(err)
-	// 	}
+	for {
+		err = decoder.Decode(&product)
+		if err != nil {
+			fmt.Print(err)
+		}
 
-	// 	fmt.Print(product)
+		json.Unmarshal(byteResult, &product)
+	}
 
-	// json.Unmarshal(byteResult, &product)
-
-	// for i := 0; i < len(); i++ {
-	// 	fmt.Println("ID:", product[i].ID)
-	// 	fmt.Println("Name:", product[i].Name)
-	// }
-	fmt.Println(product)
 }

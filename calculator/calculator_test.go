@@ -50,7 +50,7 @@ func TestPow(t *testing.T) {
 			if test.op != nil {
 				got := test.op(test.x, test.y)
 				if got != test.want {
-					t.Errorf("got %d, want %d", got, test.want)
+					t.Errorf("got %f, want %f", got, test.want)
 				}
 				return
 			}

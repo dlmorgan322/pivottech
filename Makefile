@@ -3,5 +3,5 @@ name: Default
 test:
 	cd calculator && go test -v ./...
 
-buid:
+build:
 	cd cmd/calculator && go build -o calculator

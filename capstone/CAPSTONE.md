@@ -44,7 +44,8 @@ Artist:
 Release Year: (press enter to leave blank)
 Genre:
     Progressive Rock (then press enter)
-Description: Original pressing, previously used (then press enter)
+Description: 
+    Original pressing, previously used (then press enter)
 
 For simplicity, the Title is the only field required to add a new item. The other can be left blank by simply hitting enter when prompted, and this will add a empty string in it's place. 
 

@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/joho/godotenv/cmd/godotenv"
+	"github.com/joho/godotenv"
 )
 
 type characterClient struct {

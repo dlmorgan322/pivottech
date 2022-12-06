@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/joho/godotenv/cmd/godotenv"
+	"github.com/joho/godotenv"
 )
 
 type characterClient struct {
@@ -22,15 +22,7 @@ type characterClient struct {
 
 const baseURL = "https://gateway.marvel.com"
 
-type MarvelCharacters []RosterRepsonse
-
-func (m MarvelCharacters) String() string {
-	var str string
-	for _, i := range m {
-		str += fmt.Sprintf("%s\n", i)
-	}
-	return str
-}
+type MarvelCharacters []Character
 
 func main() {
 
@@ -63,7 +55,7 @@ func (c *characterClient) md5Hash(timeStamp int64) string {
 	return hex.EncodeToString(hash[:])
 }
 
-func (c *characterClient) marvelRoster() ([]RosterRepsonse, error) {
+func (c *characterClient) marvelRoster() ([]Character, error) {
 	url := (baseURL + "/v1/public/characters?limit=25")
 
 	res, err := c.httpClient.Get(url)
@@ -73,13 +65,20 @@ func (c *characterClient) marvelRoster() ([]RosterRepsonse, error) {
 	defer res.Body.Close()
 
 	var roster RosterRepsonse
-	if err := json.NewDecoder(res.Body).Decode(&roster); err != nil {
+	if err := json.NewDecoder(res.Body).Decode(&roster.Data.Characters); err != nil {
 		return nil, err
 	}
 
-	var final25 []string
+	var final25 []Character
 
-	roster.Data.Results.Name = append(Name, final25)
+	for i := 0; i < 25; i++ {
+		if i < 25 {
+			for _, char := range roster.Data.Characters {
+				final25 = append(final25, char)
+			}
+		}
+
+	}
 
 	return final25, nil
 }

@@ -35,3 +35,25 @@ func TestCalculator(t *testing.T) {
 
 	}
 }
+
+func TestPow(t *testing.T) {
+
+	powTest := map[string]struct {
+		x, y, want float64
+		op         func(float64, float64) float64
+		err        error
+	}{
+		"Pow": {x: 6, y: 2, want: 36, op: calculator.Pow},
+	}
+	for name, test := range powTest {
+		t.Run(name, func(t *testing.T) {
+			if test.op != nil {
+				got := test.op(test.x, test.y)
+				if got != test.want {
+					t.Errorf("got %f, want %f", got, test.want)
+				}
+				return
+			}
+		})
+	}
+}
